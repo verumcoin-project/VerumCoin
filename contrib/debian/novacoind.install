@@ -1,0 +1,2 @@
+debian/bin/verumcoind usr/bin
+src/verumcoind usr/lib/VerumCoin

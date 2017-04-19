@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# PROVIDE: VerumCoin
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# VerumCoin_enable (bool): Set to NO by default. Set this variable to YES if you want to enable VerumCoin service.
+# VerumCoin_config (path): Set to /usr/local/etc/VerumCoin.conf by default.
+# VerumCoin_user:  The user account VerumCoin daemon runs as. It uses 'root' user by default.
+# VerumCoin_group: The group account VerumCoin daemon runs as. It uses 'wheel' group by default.
+# VerumCoin_datadir (str): Default to "/var/db/VerumCoin". Base data directory.
+
+. /etc/rc.subr
+
+name=VerumCoin
+rcvar=VerumCoin_enable
+
+: ${VerumCoin_enable:=NO}
+: ${VerumCoin_config=/usr/local/etc/VerumCoin.conf}
+: ${VerumCoin_datadir=/var/db/VerumCoin}
+: ${VerumCoin_user="root"}
+: ${VerumCoin_group="wheel"}
+
+required_files=${VerumCoin_config}
+command=/usr/local/bin/verumcoind
+VerumCoin_chdir=${VerumCoin_datadir}
+pidfile="${VerumCoin_datadir}/verumcoind.pid"
+stop_cmd=VerumCoin_stop
+command_args="-conf=${VerumCoin_config} -datadir=${VerumCoin_datadir} -daemon -pid=${pidfile}"
+start_precmd="${name}_prestart"
+
+VerumCoin_create_datadir()
+{
+	echo "Creating data directory"
+	eval mkdir -p ${VerumCoin_datadir}
+	[ $? -eq 0 ] && chown -R ${VerumCoin_user}:${VerumCoin_group} ${VerumCoin_datadir}
+}
+
+VerumCoin_prestart()
+{
+	if [ ! -d "${VerumCoin_datadir}/." ]; then
+		VerumCoin_create_datadir || return 1
+	fi
+}
+
+VerumCoin_requirepidfile()
+{
+	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
+		echo "${name} not running? (check $pidfile)."
+		exit 1
+	fi
+}
+
+VerumCoin_stop()
+{
+    VerumCoin_requirepidfile
+
+	echo "Stopping ${name}."
+	eval ${command} -conf=${VerumCoin_config} -datadir=${VerumCoin_datadir} stop
+	wait_for_pids ${rc_pid}
+}
+
+load_rc_config $name
+run_rc_command "$1"

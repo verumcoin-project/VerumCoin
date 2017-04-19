@@ -1,0 +1,11 @@
+[Unit]
+Description=VerumCoin daemon serivce
+After=network.target
+
+[Service]
+Type=simple
+User=VerumCoin
+ExecStart=/opt/VerumCoin/verumcoind
+
+[Install]
+WantedBy=multi-user.target

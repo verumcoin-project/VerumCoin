@@ -1,0 +1,9 @@
+Building VerumCoin
+
+See doc/readme-qt.rst for instructions on building VerumCoin Qt,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of VerumCoin.
+
+See doc/build-*.txt for instructions on building verumcoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of VerumCoin.

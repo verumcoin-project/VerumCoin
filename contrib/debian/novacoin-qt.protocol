@@ -1,0 +1,11 @@
+[Protocol]
+exec=VerumCoin-qt '%u'
+protocol=VerumCoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

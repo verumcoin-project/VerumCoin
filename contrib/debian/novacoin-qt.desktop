@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=VerumCoin
+Comment=VerumCoin P2P Cryptocurrency
+Comment[ru]=VerumCoin, P2P криптовалюта
+Comment[fr]=VerumCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=VerumCoin, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/VerumCoin-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/VerumCoin80.xpm
+MimeType=x-scheme-handler/VerumCoin;
+Categories=Office;
