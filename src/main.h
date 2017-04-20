@@ -960,7 +960,7 @@ public:
     unsigned int GetStakeEntropyBit(unsigned int nHeight) const
     {
         // Protocol switch to support p2pool at VerumCoin block #0
-        if (nHeight + 1 >= 1 || fTestNet)
+        if (nHeight >= 0 || fTestNet)
         {
             // Take last bit of block hash as entropy bit
             unsigned int nEntropyBit = ((GetHash().Get64()) & 1ULL);
