@@ -36,8 +36,8 @@ UI_DIR = build
 
 macx {
     message(Building OS MacX)
-    BOOST_INCLUDE_PATH=/usr/local/Cellar/boost/1.63.0/include
-    BOOST_LIB_PATH=/usr/local/Cellar/boost/1.63.0/lib
+    BOOST_INCLUDE_PATH=/usr/local/Cellar/boost/1.64.0_1/include
+    BOOST_LIB_PATH=/usr/local/Cellar/boost/1.64.0_1/lib
     BDB_LIB_SUFFIX=-4.8
     BDB_INCLUDE_PATH=/usr/local/Cellar/berkeley-db@4/4.8.30/include
     BDB_LIB_PATH=/usr/local/Cellar/berkeley-db@4/4.8.30/lib
@@ -73,9 +73,9 @@ linux-* {
 
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
-    macx:QMAKE_CXXFLAGS += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.7 -Wreserved-user-defined-literal
-    macx:QMAKE_CFLAGS += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.7
-    macx:QMAKE_OBJECTIVE_CFLAGS += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.7
+    macx:QMAKE_CXXFLAGS += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.7 -Wreserved-user-defined-literal
+    macx:QMAKE_CFLAGS += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.7
+    macx:QMAKE_OBJECTIVE_CFLAGS += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.7
 
     !windows:!macx {
         # Linux: static link

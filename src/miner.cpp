@@ -543,6 +543,10 @@ bool FillMap(CWallet *pwallet, uint32_t nUpperTime, MidstateMap &inputsMap)
     if (nBalance <= nReserveBalance)
         return false;
 
+    #if defined(WIN32)
+        return false;
+    #endif
+
     uint32_t nTime = GetAdjustedTime();
 
     CTxDB txdb("r");
